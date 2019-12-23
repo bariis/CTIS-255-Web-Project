@@ -31,12 +31,14 @@ body {
 #pp { border-radius: 50%; width: 150px; height: 150px;}
 
 #gameCanvas {
-    display: none; 
+    display: none;
+    
     background: url("img/bg.jpg") no-repeat;
     border: 2px solid black;
 }
 
 .box {
+    
     float: left;
     background-color: red;;
     width:  21%;
@@ -46,17 +48,6 @@ body {
     text-align: center;
     margin: 8px;
 }
-
-span {
-    font-size: 45px;
-    font-weight: bold;
-    vertical-align: middle;
-    line-height: 100%;
-    text-align: center;
-}
-
-/* vertical-align: middle;
-line-height: 90px;      */
 /* display: inline-block;
 width: 20%;
 height: 20%;
