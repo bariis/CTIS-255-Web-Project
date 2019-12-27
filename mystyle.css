@@ -6,20 +6,20 @@
 }
 
 body {
-    background-color: lightblue;
+    background-color:black;
     color: white;
 }
 
 .mainBox {
     margin: 50px auto;
     width: 450px;
-    height: 450px;
+    height: 470px;
     border-radius: 10%;
 }
 
 #container {
     position: absolute;
-    background-color: steelblue;
+    background-color: darkslategray;
     text-align: center;
     padding: 30px;
 }
@@ -32,25 +32,70 @@ body {
 
 #gameCanvas {
     display: none; 
-    background: url("img/bg.jpg") no-repeat;
+    background: url("img/bg3.jpg");
     border: 2px solid black;
+    width: 610px;
 }
 
 .box {
     float: left;
-    background-color: red;;
-    width:  21%;
-    height: 21%;
+    background-color: rgb(37, 27, 126);
+    width:  100px;
+    height: 100px;
     border-radius: 27%;
     border: 1px dashed darkblue;
     text-align: center;
     margin: 8px;
+
 }
 
 span {
-    font-size: 45px;
+    font-size: 50px;
     font-weight: bold;
     vertical-align: middle;
-    line-height: 100%;
-    text-align: center;
+    line-height: 100px;  
+}
+
+img {
+    width: 50px;
+    height: 50px;
+    line-height: 100px;
+    padding-top: 10px;
+}
+
+p:first-of-type {
+    font-size: 40px;
+}
+
+p:nth-of-type(2) {
+    font-size: 30px;
+    color: yellow;
+}
+
+#result {
+    margin: 50px auto;
+    text-align: center
+}
+
+#optPlay {
+    display: flex;
+    justify-content: center;
+}
+
+#start {
+    margin-left: 20px;
+    size: 40px;
+}
+
+#left {
+    padding: 12px;
+}
+
+label {
+    font-size: 15px;
+}
+
+select {
+    height: 30px;
+    width: 30px;
 }

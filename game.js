@@ -1,15 +1,13 @@
 
-function showGameCanvas(){
-    $("#gameCanvas .box").each(function(e){
-        $(this).css("visibility","hidden");
-    })
-    $("#gameCanvas").delay(2000).fadeIn(2000);
-    
-}
+    function showGameCanvas(){
+       $("#gameCanvas .box").each(function(e){
+          $(this).css("visibility","hidden");
+        })
+        $("#gameCanvas").delay(2000).fadeIn(2000);
+    }
 
     function setRandomBoxes(randomNumbers){
 
-  //      console.log(`difficulty is ${difficulty}`);
         for(var i = 0; i< randomNumbers.length; i++){
             $(`#${randomNumbers[i]}`).css("visibility","visible").find("span").hide();
             console.log(randomNumbers[i]);
@@ -22,81 +20,73 @@ function showGameCanvas(){
          }
 }
 
-    function boxesClicked(randomNumbers){
+    function setRandomNumbersToBox(difficulty){
+
+        var nums = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+        var randomNumbers = [];
+
+        for(var i = 0; i<difficulty; i++){
+             var number = Math.floor(Math.random() * nums.length);
+            randomNumbers.push(nums[number]);
+            nums.splice(number, 1);
+        }
+
+            return randomNumbers;
+    }
+
+    function boxesClicked(randomNumbers, difficulty){
 
         $(".box").click(function(){
             console.log("box clicked");  
         })
 
-        // for(var k = 0; k < randomNumbers.length; k++){
-        //     console.log($(`#${randomNumbers[k]}`).find("span").html());
-        //     console.log(`${randomNumbers[k]}`);
-      
-        // }
-
+        var flag = false;
+        console.log(difficulty);
         var value = 1;
-        for(var i  = 0 ; i < randomNumbers.length; i++){
+        for(var i  = 0 ; i < difficulty; i++){
             $(`#${randomNumbers[i]}`).click(function(){
                 if($(this).find("span").html() == value){
-                    console.log("true")
-                    value += 1;
+                        flag = true;
+                        $(this).html(`<span class="check"><img src='img/true.png'></span>`);
+                        value += 1;
                 } else {
-                    console.log("false");
+                    flag = false;
+                    $(".box").off("click");
+                    $(this).html(`<span class="check"><img src='img/false2.png'></span>`);
+                    $("#result").append(`<p style="color:red">FAILED</p>
+                    <p>You failed in level ${difficulty}. <br> F5 to restart game.</p>`);
                 }
-
-            })
+                if(value === 5){
+                    $(".box").off("click");
+                    $("#result").append(`<p style="color:green">Congratulations</p>
+                    <p>You completed level ${difficulty}.<br> F5 to restart game.</p>`);
+                }
+            })   
         }
-
-            // (`#${randomNumbers[i]}`).click(function()
-            //     if($(this).html() == value){
-            //         console.log("true");
-            //         value += 1;
-            //     } 
-
-
-
-        // $("").click(function() {
-        //     $("#btnGroup").append(`<button>New Button ${id}</button>`); 
-        //     id++;
-        // });
-        // $("#btnGroup").on("click", "button", function() {
-        //     $("#panel").html( $(this).html() + " clicked.");
-        // }); 
     }
 
-
-
-$(function(){
+    $(function(){
     
-     $("#container").animate({left : '498px'}, 2000);
-     
-     var difficulty = 4;
+        $("#container").animate({left : '500px'}, 2000);
+        
+        difficulty = 4;
+        var randomNumbers;
 
-     $("#difficulty").change(function(e){
-        difficulty = $(this).val();    
-    })
+        $("#difficulty").change(function(e){
+            difficulty = $(this).val();    
+        })
+        
+        for(var i = 0; i<20; i++)
+            $("#gameCanvas").append(`<div class="box" id="${i+1}"><span>${i+1}</span></div>`);
 
-     $("#start").click(function(){
+        $("#start").click(function(){
+            $("#container").css("display","inline-block").fadeOut(1500);
 
-        $("#container").css("display","inline-block").fadeOut(1500);
-        showGameCanvas();
-
-        var nums = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
-        var randomNumbers = [];
-
-        // random boxes and prevention of duplication
-        for(var i = 0; i<difficulty; i++){
-           var number = Math.floor(Math.random() * nums.length);
-           randomNumbers.push(nums[number]);
-            nums.splice(number, 1);
-        }
-
-         setRandomBoxes(randomNumbers);
-         boxesClicked(randomNumbers);
-
-         });
-  
-
+            showGameCanvas();
+            randomNumbers =  setRandomNumbersToBox(difficulty);
+            setRandomBoxes(randomNumbers);
+            boxesClicked(randomNumbers, difficulty);
+    });
 });
 
 
