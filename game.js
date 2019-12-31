@@ -4,13 +4,26 @@
           $(this).css("visibility","hidden");
         })
         $("#gameCanvas").delay(2000).fadeIn(2000);
+        
     }
 
     function setRandomBoxes(randomNumbers){
 
+
+
+        // $( "a" ).click(function( event ) {
+        //     event.preventDefault();
+        //     $( "<div>" )
+        //       .append( "default " + event.type + " prevented" )
+        //       .appendTo( "#log" );
+        //   });
+
+
+
         for(var i = 0; i< randomNumbers.length; i++){
             $(`#${randomNumbers[i]}`).css("visibility","visible").find("span").hide();
             console.log(randomNumbers[i]);
+
          }
 
        var delay = 5000;
@@ -34,8 +47,15 @@
             return randomNumbers;
     }
 
+    function preventClick(randomNumbers){
+        for(var i = 0; i<20; i++)
+         $(`#${randomNumbers[i]}`).click(false);
+
+    }
+
     function boxesClicked(randomNumbers, difficulty){
 
+        
         $(".box").click(function(){
             console.log("box clicked");  
         })
@@ -76,14 +96,17 @@
             difficulty = $(this).val();    
         })
         
-        for(var i = 0; i<20; i++)
+        for(var i = 0; i<20; i++){
             $("#gameCanvas").append(`<div class="box" id="${i+1}"><span>${i+1}</span></div>`);
+            
+        }
 
         $("#start").click(function(){
             $("#container").css("display","inline-block").fadeOut(1500);
 
             showGameCanvas();
             randomNumbers =  setRandomNumbersToBox(difficulty);
+            preventClick(randomNumbers);
             setRandomBoxes(randomNumbers);
             boxesClicked(randomNumbers, difficulty);
     });

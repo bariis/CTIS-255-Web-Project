@@ -99,3 +99,7 @@ select {
     height: 30px;
     width: 30px;
 }
+
+#difficulty {
+    width: 40px;
+}
