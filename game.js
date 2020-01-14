@@ -70,16 +70,13 @@
             difficulty = $(this).val();    
         })
         
-        for(var i = 0; i<20; i++){
+        for(var i = 0; i<20; i++)
             $("#gameCanvas").append(`<div class="box" id="${i+1}"><span>${i+1}</span></div>`);
-        }
-
+        
             $("#start").click(function(){
             $("#container").css("display","inline-block").fadeOut(1500);
-
             showGameCanvas();
             randomNumbers =  setRandomNumbersToBox(difficulty);
-            preventClick(randomNumbers);
             setRandomBoxes(randomNumbers);
             boxesClicked(randomNumbers, difficulty);
     });
