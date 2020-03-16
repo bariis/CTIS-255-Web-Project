@@ -3,8 +3,7 @@
        $("#gameCanvas .box").each(function(e){
           $(this).css("visibility","hidden");
         })
-        $("#gameCanvas").delay(2000).fadeIn(2000);
-        
+        $("#gameCanvas").delay(2000).fadeIn(2000);  
     }
 
     function setRandomBoxes(randomNumbers){
@@ -17,7 +16,7 @@
             $(`#${randomNumbers[i-1]} > span`).html(`${i}`).css("visibility","visible").delay(`${delay}`).fadeIn(1).delay(1000).fadeOut(1000);
             delay += 2000;
          }
-}
+    }
 
     function setRandomNumbersToBox(difficulty){
 
@@ -29,7 +28,6 @@
             randomNumbers.push(nums[number]);
             nums.splice(number, 1);
         }
-
             return randomNumbers;
     }
 
@@ -70,9 +68,9 @@
             difficulty = $(this).val();    
         })
         
-        for(var i = 0; i<20; i++)
+        for(var i = 0; i<20; i++){
             $("#gameCanvas").append(`<div class="box" id="${i+1}"><span>${i+1}</span></div>`);
-        
+        }
             $("#start").click(function(){
             $("#container").css("display","inline-block").fadeOut(1500);
             showGameCanvas();
